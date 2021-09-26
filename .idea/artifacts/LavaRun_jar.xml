@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="LavaRun:jar">
+    <output-path>$PROJECT_DIR$/../Server/plugins</output-path>
+    <root id="archive" name="LavaRun.jar">
+      <element id="module-output" name="LavaRun" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/spigot-1.17.1.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

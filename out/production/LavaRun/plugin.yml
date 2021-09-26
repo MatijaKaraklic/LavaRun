@@ -1,0 +1,6 @@
+name: LavaRun
+main: me.arteon.lavarun.Main
+version: 1.0
+api-version: 1.17
+author: Arteon
+description: This is LavaRun plugin.
