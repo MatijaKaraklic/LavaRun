@@ -37,4 +37,5 @@ public class Main extends JavaPlugin {
     public static void onGameEnds(){
         isGameRunning = false;
     }
+
 }
