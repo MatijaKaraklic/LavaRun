@@ -22,4 +22,10 @@ public class Main extends JavaPlugin {
     public void setGameRunning(boolean gameRunning) {
         isGameRunning = gameRunning;
     }
+    public void startGame(){
+        isGameRunning = true;
+    }
+    public static void onGameEnds(){
+        isGameRunning = false;
+    }
 }
