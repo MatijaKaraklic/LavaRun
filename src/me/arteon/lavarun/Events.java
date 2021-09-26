@@ -6,19 +6,18 @@ import org.bukkit.event.player.PlayerJoinEvent;
 
 public class Events implements Listener {
 
-    public Events(){
+    Main plugin;
 
+    public Events(Main main){
+        this.plugin = main;
     }
 
     public void onJoin(PlayerJoinEvent event) {
-
-        event.getPlayer().sendMessage("BABABA");
-        if (Main.isGameRunning()) {
+        if (plugin.isGameRunning()) {
             event.getPlayer().setGameMode(GameMode.SPECTATOR);
         } else {
             event.getPlayer().setGameMode(GameMode.ADVENTURE);
         }
-
     }
 
 }
