@@ -23,18 +23,18 @@ public class Main extends JavaPlugin {
         return isGameRunning;
     }
 
-    public static void setGameRunning(boolean gameRunning) {
+    public void setGameRunning(boolean gameRunning) {
         isGameRunning = gameRunning;
     }
 
-    public static void startGame(){
+    public void startGame(){
         isGameRunning = true;
         for(Player p:new Main().getServer().getOnlinePlayers()){
              p.teleport(center);
         }
     }
 
-    public static void onGameEnds(){
+    public void onGameEnds(){
         isGameRunning = false;
     }
 
