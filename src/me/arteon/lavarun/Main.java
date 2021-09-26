@@ -1,9 +1,12 @@
 package me.arteon.lavarun;
 
+import org.bukkit.Location;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin {
     private static boolean isGameRunning = false;
+    private static  Location center;
     @Override
     public void onEnable() {
         getServer().getConsoleSender().sendMessage("Lava Run Enabled.");
@@ -24,6 +27,9 @@ public class Main extends JavaPlugin {
     }
     public static void startGame(){
         isGameRunning = true;
+        for(Player p:new Main().getServer().getOnlinePlayers()){
+             p.teleport(center);
+        }
     }
     public static void onGameEnds(){
         isGameRunning = false;

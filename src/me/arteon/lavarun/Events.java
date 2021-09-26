@@ -10,7 +10,7 @@ public class Events implements Listener {
 
     }
 
-    public void onJoin(PlayerJoinEvent event){
+    public void onJoin(PlayerJoinEvent event) {
 
         event.getPlayer().sendMessage("BABABA");
         if (Main.isGameRunning()) {
@@ -20,6 +20,5 @@ public class Events implements Listener {
         }
 
     }
-
 
 }
