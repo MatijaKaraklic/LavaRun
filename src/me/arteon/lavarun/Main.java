@@ -1,12 +1,24 @@
 package me.arteon.lavarun;
 
 import org.bukkit.Location;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin {
-    private static boolean isGameRunning = false;
+    private static boolean isGameRunning;
     private static  Location center;
+
+
+
+    //------------------------------------------------
+    //MAIN FUNCTIONS
+    //------------------------------------------------
+
+    public Main(){
+        isGameRunning = false;
+    }
 
     @Override
     public void onEnable() {
@@ -19,13 +31,24 @@ public class Main extends JavaPlugin {
         getServer().getConsoleSender().sendMessage("Lava Run Disabled.");
     }
 
+
+
+    //------------------------------------------------
+    //GET AND SET
+    //------------------------------------------------
+
     public boolean isGameRunning() {
         return isGameRunning;
     }
 
-    public void setGameRunning(boolean gameRunning) {
-        isGameRunning = gameRunning;
+    public void gameEnd(){
+        this.isGameRunning = true;
     }
+
+
+    //------------------------------------------------
+    //GAME
+    //------------------------------------------------
 
     public void startGame(){
         isGameRunning = true;
@@ -34,8 +57,14 @@ public class Main extends JavaPlugin {
         }
     }
 
-    public void onGameEnds(){
-        isGameRunning = false;
-    }
 
+
+    //------------------------------------------------
+    //COMMANDS
+    //------------------------------------------------
+
+    @Override
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        return super.onCommand(sender, command, label, args);
+    }
 }
