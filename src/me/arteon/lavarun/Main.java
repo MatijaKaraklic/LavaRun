@@ -19,10 +19,10 @@ public class Main extends JavaPlugin {
         return isGameRunning;
     }
 
-    public void setGameRunning(boolean gameRunning) {
+    public static void setGameRunning(boolean gameRunning) {
         isGameRunning = gameRunning;
     }
-    public void startGame(){
+    public static void startGame(){
         isGameRunning = true;
     }
     public static void onGameEnds(){
