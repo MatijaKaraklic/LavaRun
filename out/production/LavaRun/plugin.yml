@@ -4,3 +4,7 @@ version: 1.0
 api-version: 1.17
 author: Arteon
 description: This is LavaRun plugin.
+commands:
+  setcenter:
+    description: Setup center location.
+    usage: /<command>

@@ -9,6 +9,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class Main extends JavaPlugin {
     private boolean isGameRunning;
     private static Location center;
+    Commands commands;
+
 
 
     //------------------------------------------------
@@ -20,6 +22,7 @@ public class Main extends JavaPlugin {
         firstSetup();
         getServer().getConsoleSender().sendMessage("Lava Run Enabled.");
         getServer().getPluginManager().registerEvents(new Events(this), this);
+        getCommand("setcenter").setExecutor(commands);
     }
 
     @Override
@@ -29,7 +32,10 @@ public class Main extends JavaPlugin {
 
     private void firstSetup(){
         isGameRunning = false;
+        commands = new Commands(this);
     }
+
+
 
     //------------------------------------------------
     //GET AND SET
@@ -37,6 +43,13 @@ public class Main extends JavaPlugin {
 
     public boolean isGameRunning() {
         return isGameRunning;
+    }
+
+    public Location getCenter(){
+        return this.center;
+    }
+    public void setCenter(Location l){
+        this.center = l;
     }
 
 
@@ -56,14 +69,4 @@ public class Main extends JavaPlugin {
         this.isGameRunning = false;
     }
 
-
-
-    //------------------------------------------------
-    //COMMANDS
-    //------------------------------------------------
-
-    @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        return super.onCommand(sender, command, label, args);
-    }
 }

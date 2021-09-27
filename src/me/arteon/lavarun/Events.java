@@ -13,6 +13,12 @@ public class Events implements Listener {
         this.plugin = main;
     }
 
+
+
+    //------------------------------------------------
+    //PLAYER JOIN
+    //------------------------------------------------
+
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         if (plugin.isGameRunning()) {
