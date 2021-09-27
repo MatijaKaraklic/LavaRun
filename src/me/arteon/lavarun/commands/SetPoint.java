@@ -38,13 +38,13 @@ public class SetPoint implements CommandExecutor {
         return false;
     }
 
-    public void setupPointA(Player p){
+    private void setupPointA(Player p){
         Location l = p.getLocation();
         plugin.setPointA(l);
         p.sendMessage(ChatColor.GREEN + "Point A is on location: " + simpleLocation(l));
     }
 
-    public void setupPointB(Player p){
+    private void setupPointB(Player p){
         Location l = p.getLocation();
         plugin.setPointB(l);
         p.sendMessage(ChatColor.GREEN + "Point B is on location: " + simpleLocation(l));

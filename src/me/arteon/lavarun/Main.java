@@ -58,6 +58,9 @@ public class Main extends JavaPlugin {
     public boolean isGameRunning() {
         return running;
     }
+    public void setGameRunning(Boolean b){
+        this.running = b;
+    }
 
     public Location getCenter(){
         return this.center;
@@ -78,23 +81,6 @@ public class Main extends JavaPlugin {
     }
     public Location getPointB(){
         return this.pointB;
-    }
-
-
-    //------------------------------------------------
-    //GAME
-    //------------------------------------------------
-
-    public void startGame(){
-        this.running = true;
-        for(Player p:new Main().getServer().getOnlinePlayers()){
-             p.teleport(center);
-             p.sendMessage("Game start.");
-        }
-    }
-
-    public void gameEnd(){
-        this.running= false;
     }
 
 }

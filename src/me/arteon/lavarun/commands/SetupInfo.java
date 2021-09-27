@@ -31,7 +31,7 @@ public class SetupInfo implements CommandExecutor {
         return false;
     }
 
-    public void setupInfo(Player p){
+    private void setupInfo(Player p){
         p.sendMessage(ChatColor.GOLD + "-----------INFO-----------");
         p.sendMessage(ChatColor.GREEN + "Center: " + simpleLocation(plugin.getCenter()));
         p.sendMessage(ChatColor.GREEN + "Point A: " + simpleLocation(plugin.getPointA()));
