@@ -63,7 +63,9 @@ public class Main extends JavaPlugin {
         isGameRunning = true;
         for(Player p:new Main().getServer().getOnlinePlayers()){
              p.teleport(center);
+
              p.sendMessage("Game start.");
+
         }
     }
 
