@@ -1,15 +1,15 @@
 package me.arteon.lavarun;
 
+import me.arteon.lavarun.commands.Setcenter;
+import me.arteon.lavarun.events.Events;
 import org.bukkit.Location;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin {
-    private boolean isGameRunning;
+    private boolean running;
     private static Location center;
-    Commands commands;
+    Setcenter setcenter;
 
 
 
@@ -22,7 +22,7 @@ public class Main extends JavaPlugin {
         firstSetup();
         getServer().getConsoleSender().sendMessage("Lava Run Enabled.");
         getServer().getPluginManager().registerEvents(new Events(this), this);
-        getCommand("setcenter").setExecutor(commands);
+        getCommand("setcenter").setExecutor(setcenter);
     }
 
     @Override
@@ -31,8 +31,8 @@ public class Main extends JavaPlugin {
     }
 
     private void firstSetup(){
-        isGameRunning = false;
-        commands = new Commands(this);
+        running = false;
+        setcenter = new Setcenter(this);
     }
 
 
@@ -42,7 +42,7 @@ public class Main extends JavaPlugin {
     //------------------------------------------------
 
     public boolean isGameRunning() {
-        return isGameRunning;
+        return running;
     }
 
     public Location getCenter(){
@@ -59,7 +59,7 @@ public class Main extends JavaPlugin {
     //------------------------------------------------
 
     public void startGame(){
-        isGameRunning = true;
+        this.running = true;
         for(Player p:new Main().getServer().getOnlinePlayers()){
              p.teleport(center);
              p.sendMessage("Game start.");
@@ -67,7 +67,7 @@ public class Main extends JavaPlugin {
     }
 
     public void gameEnd(){
-        this.isGameRunning = false;
+        this.running= false;
     }
 
 }

@@ -1,5 +1,6 @@
-package me.arteon.lavarun;
+package me.arteon.lavarun.events;
 
+import me.arteon.lavarun.Main;
 import org.bukkit.GameMode;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

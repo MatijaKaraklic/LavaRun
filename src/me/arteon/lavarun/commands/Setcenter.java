@@ -1,31 +1,38 @@
-package me.arteon.lavarun;
+package me.arteon.lavarun.commands;
 
+import me.arteon.lavarun.Main;
 import org.bukkit.ChatColor;
+import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 
-public class Commands implements CommandExecutor {
+import java.io.Console;
+
+public class Setcenter implements CommandExecutor {
 
     Main plugin;
 
-    public Commands(Main main){
+    public Setcenter(Main main){
         this.plugin = main;
     }
 
     @Override
-    public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
-        if(!(commandSender instanceof Player)){return true;}
+    public boolean onCommand(CommandSender commandSender, Command command, String s, String[] args) {
+        if(!(commandSender instanceof Player)){return false;}
 
         Player player = (Player) commandSender;
 
-        if(command.getName().equalsIgnoreCase("setcenter") && player.isOp()){
+        if(player.isOp()) {
             setupCenter(player);
-            return true;
+        }
+        else {
+            player.getPlayer().sendMessage(ChatColor.RED + "You are not Operator on this server!");
         }
 
         return false;
