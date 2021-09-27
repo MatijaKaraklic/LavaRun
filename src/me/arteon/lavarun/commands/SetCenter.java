@@ -14,11 +14,11 @@ import org.bukkit.entity.Player;
 
 import java.io.Console;
 
-public class Setcenter implements CommandExecutor {
+public class SetCenter implements CommandExecutor {
 
     Main plugin;
 
-    public Setcenter(Main main){
+    public SetCenter(Main main){
         this.plugin = main;
     }
 
@@ -32,17 +32,11 @@ public class Setcenter implements CommandExecutor {
             setupCenter(player);
         }
         else {
-            player.getPlayer().sendMessage(ChatColor.RED + "You are not Operator on this server!");
+            player.sendMessage(ChatColor.RED + "You are not Operator on this server!");
         }
 
         return false;
     }
-
-
-
-    //------------------------------------------------
-    //CENTER
-    //------------------------------------------------
 
     private void setupCenter(Player p){
 
@@ -51,16 +45,16 @@ public class Setcenter implements CommandExecutor {
 
         if(old == null){
             plugin.setCenter(l);
-            p.getPlayer().sendMessage(ChatColor.GREEN + "New center location is: " + simpleLocation(l));
+            p.sendMessage(ChatColor.GREEN + "New center location is: " + simpleLocation(l));
         }
         else if(isEqualsLocationsInt(l, old)){
             plugin.setCenter(l);
-            p.getPlayer().sendMessage(ChatColor.GREEN + "Center location is: " + simpleLocation(l));
+            p.sendMessage(ChatColor.GREEN + "Center location is: " + simpleLocation(l));
         }
         else {
             plugin.setCenter(l);
-            p.getPlayer().sendMessage(ChatColor.GREEN + "The center location has been moved from: " + simpleLocation(old));
-            p.getPlayer().sendMessage(ChatColor.GREEN + "To: " + simpleLocation(l));
+            p.sendMessage(ChatColor.GREEN + "The center location has been moved from: " + simpleLocation(old));
+            p.sendMessage(ChatColor.GREEN + "To: " + simpleLocation(l));
         }
 
     }

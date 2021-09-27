@@ -7,4 +7,7 @@ description: This is LavaRun plugin.
 commands:
   setcenter:
     description: Setup center location.
-    usage: /<command>
+  setpoint:
+    description: Setup point A and B.
+  setupinfo:
+    description: Show info about setup.

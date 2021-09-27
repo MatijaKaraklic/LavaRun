@@ -1,6 +1,8 @@
 package me.arteon.lavarun;
 
-import me.arteon.lavarun.commands.Setcenter;
+import me.arteon.lavarun.commands.SetCenter;
+import me.arteon.lavarun.commands.SetPoint;
+import me.arteon.lavarun.commands.SetupInfo;
 import me.arteon.lavarun.events.Events;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -8,8 +10,12 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin {
     private boolean running;
-    private static Location center;
-    Setcenter setcenter;
+    private Location center;
+    private Location pointA;
+    private Location pointB;
+    SetCenter setcenter;
+    SetPoint setpoint;
+    SetupInfo setupinfo;
 
 
 
@@ -23,6 +29,8 @@ public class Main extends JavaPlugin {
         getServer().getConsoleSender().sendMessage("Lava Run Enabled.");
         getServer().getPluginManager().registerEvents(new Events(this), this);
         getCommand("setcenter").setExecutor(setcenter);
+        getCommand("setpoint").setExecutor(setpoint);
+        getCommand("setupinfo").setExecutor(setupinfo);
     }
 
     @Override
@@ -32,7 +40,9 @@ public class Main extends JavaPlugin {
 
     private void firstSetup(){
         running = false;
-        setcenter = new Setcenter(this);
+        setcenter = new SetCenter(this);
+        setpoint = new SetPoint(this);
+        setupinfo = new SetupInfo(this);
     }
 
 
@@ -52,6 +62,19 @@ public class Main extends JavaPlugin {
         this.center = l;
     }
 
+    public void setPointA(Location l){
+        this.pointA = l;
+    }
+    public Location getPointA(){
+        return this.pointA;
+    }
+
+    public void setPointB(Location l){
+        this.pointB = l;
+    }
+    public Location getPointB(){
+        return this.pointB;
+    }
 
 
     //------------------------------------------------
