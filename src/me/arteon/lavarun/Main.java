@@ -23,7 +23,6 @@ public class Main extends JavaPlugin {
         getServer().getConsoleSender().sendMessage("Lava Run Enabled.");
         getServer().getPluginManager().registerEvents(new Events(this), this);
         getCommand("setcenter").setExecutor(commands);
-        getCommand("startgame").setExecutor(commands);
     }
 
     @Override
