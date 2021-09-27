@@ -42,11 +42,11 @@ public class Commands implements CommandExecutor {
         Location l = p.getLocation();
         Location old = plugin.getCenter();
 
-        if(plugin.getCenter() == null){
+        if(old == null){
             plugin.setCenter(l);
             p.getPlayer().sendMessage(ChatColor.GREEN + "New center location is: " + simpleLocation(l));
         }
-        else if(l.equals(old)){
+        else if(isEqualsLocationsInt(l, old)){
             plugin.setCenter(l);
             p.getPlayer().sendMessage(ChatColor.GREEN + "Center location is: " + simpleLocation(l));
         }
@@ -60,6 +60,13 @@ public class Commands implements CommandExecutor {
 
     private String simpleLocation(Location l){
         return "X: " + l.getBlockX() + " Y: " + l.getBlockY() + " Z: " + l.getBlockZ();
+    }
+
+    private boolean isEqualsLocationsInt(Location l1, Location l2){
+        if (l1.getBlockX() == l2.getBlockX() && l1.getBlockY() == l2.getBlockY() && l1.getBlockZ() == l2.getBlockZ()){
+            return true;
+        }
+        else return false;
     }
 
 }

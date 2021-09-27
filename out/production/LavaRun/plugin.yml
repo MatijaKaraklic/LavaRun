@@ -8,6 +8,3 @@ commands:
   setcenter:
     description: Setup center location.
     usage: /<command>
-  startgame:
-    description: Start LavaRun game.
-    usage: /<command>
