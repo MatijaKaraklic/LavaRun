@@ -7,21 +7,17 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin {
-    private static boolean isGameRunning;
-    private static  Location center;
-
+    private boolean isGameRunning;
+    private static Location center;
 
 
     //------------------------------------------------
     //MAIN FUNCTIONS
     //------------------------------------------------
 
-    public Main(){
-        isGameRunning = false;
-    }
-
     @Override
     public void onEnable() {
+        firstSetup();
         getServer().getConsoleSender().sendMessage("Lava Run Enabled.");
         getServer().getPluginManager().registerEvents(new Events(this), this);
     }
@@ -31,7 +27,9 @@ public class Main extends JavaPlugin {
         getServer().getConsoleSender().sendMessage("Lava Run Disabled.");
     }
 
-
+    private void firstSetup(){
+        isGameRunning = false;
+    }
 
     //------------------------------------------------
     //GET AND SET
@@ -41,9 +39,6 @@ public class Main extends JavaPlugin {
         return isGameRunning;
     }
 
-    public void gameEnd(){
-        this.isGameRunning = true;
-    }
 
 
     //------------------------------------------------
@@ -55,6 +50,10 @@ public class Main extends JavaPlugin {
         for(Player p:new Main().getServer().getOnlinePlayers()){
              p.teleport(center);
         }
+    }
+
+    public void gameEnd(){
+        this.isGameRunning = false;
     }
 
 
