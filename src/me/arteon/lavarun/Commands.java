@@ -23,8 +23,12 @@ public class Commands implements CommandExecutor {
 
         Player player = (Player) commandSender;
 
-        if(command.getName().equalsIgnoreCase("setcenter")){
+        if(command.getName().equalsIgnoreCase("setcenter") && player.isOp()){
             setupCenter(player);
+            return true;
+        }
+        else if(command.getName().equalsIgnoreCase("startgame") && plugin.getCenter() != null && player.isOp()){
+            plugin.startGame();
             return true;
         }
 
