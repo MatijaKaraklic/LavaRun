@@ -3,6 +3,7 @@ package me.arteon.lavarun;
 import me.arteon.lavarun.commands.SetCenter;
 import me.arteon.lavarun.commands.SetPoint;
 import me.arteon.lavarun.commands.SetupInfo;
+import me.arteon.lavarun.commands.Start;
 import me.arteon.lavarun.events.Events;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -16,6 +17,7 @@ public class Main extends JavaPlugin {
     SetCenter setcenter;
     SetPoint setpoint;
     SetupInfo setupinfo;
+    Start start;
 
 
 
@@ -31,6 +33,7 @@ public class Main extends JavaPlugin {
         getCommand("setcenter").setExecutor(setcenter);
         getCommand("setpoint").setExecutor(setpoint);
         getCommand("setupinfo").setExecutor(setupinfo);
+        getCommand("start").setExecutor(start);
     }
 
     @Override
@@ -43,11 +46,12 @@ public class Main extends JavaPlugin {
         setcenter = new SetCenter(this);
         setpoint = new SetPoint(this);
         setupinfo = new SetupInfo(this);
+        start = new Start(this);
     }
 
 
 
-    //------------------------------------------------
+    //---------------------------------------------`---
     //GET AND SET
     //------------------------------------------------
 
