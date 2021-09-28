@@ -1,25 +1,19 @@
 package me.arteon.lavarun.commands;
 
-import me.arteon.lavarun.Main;
+import me.arteon.lavarun.LavaRun;
 import org.bukkit.ChatColor;
-import org.bukkit.Color;
 import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
-
-import java.io.Console;
 
 public class SetCenter implements CommandExecutor {
 
-    Main plugin;
+    LavaRun plugin;
 
-    public SetCenter(Main main){
-        this.plugin = main;
+    public SetCenter(LavaRun lavaRun){
+        this.plugin = lavaRun;
     }
 
     @Override

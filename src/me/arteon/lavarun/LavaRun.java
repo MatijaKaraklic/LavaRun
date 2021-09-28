@@ -3,13 +3,13 @@ package me.arteon.lavarun;
 import me.arteon.lavarun.commands.SetCenter;
 import me.arteon.lavarun.commands.SetPoint;
 import me.arteon.lavarun.commands.SetupInfo;
-import me.arteon.lavarun.commands.Start;
+import me.arteon.lavarun.game.Game;
 import me.arteon.lavarun.events.Events;
+import me.arteon.lavarun.game.GameManager;
 import org.bukkit.Location;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class Main extends JavaPlugin {
+public class LavaRun extends JavaPlugin {
     private boolean running;
     private Location center;
     private Location pointA;
@@ -17,7 +17,7 @@ public class Main extends JavaPlugin {
     SetCenter setcenter;
     SetPoint setpoint;
     SetupInfo setupinfo;
-    Start start;
+    Game game;
 
 
 
@@ -33,7 +33,7 @@ public class Main extends JavaPlugin {
         getCommand("setcenter").setExecutor(setcenter);
         getCommand("setpoint").setExecutor(setpoint);
         getCommand("setupinfo").setExecutor(setupinfo);
-        getCommand("start").setExecutor(start);
+        getCommand("game").setExecutor(game);
     }
 
     @Override
@@ -46,7 +46,6 @@ public class Main extends JavaPlugin {
         setcenter = new SetCenter(this);
         setpoint = new SetPoint(this);
         setupinfo = new SetupInfo(this);
-        start = new Start(this);
     }
 
 

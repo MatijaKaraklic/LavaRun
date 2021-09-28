@@ -1,6 +1,6 @@
 package me.arteon.lavarun.commands;
 
-import me.arteon.lavarun.Main;
+import me.arteon.lavarun.LavaRun;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
@@ -10,10 +10,10 @@ import org.bukkit.entity.Player;
 
 public class SetupInfo implements CommandExecutor {
 
-    Main plugin;
+    LavaRun plugin;
 
-    public SetupInfo(Main main){
-        this.plugin = main;
+    public SetupInfo(LavaRun lavaRun){
+        this.plugin = lavaRun;
     }
 
     @Override

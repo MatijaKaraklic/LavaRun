@@ -1,18 +1,20 @@
-package me.arteon.lavarun.commands;
+package me.arteon.lavarun.game;
 
-import me.arteon.lavarun.Main;
+import me.arteon.lavarun.LavaRun;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class Start implements CommandExecutor {
+public class Game implements CommandExecutor {
 
-    Main plugin;
+    LavaRun plugin;
+    GameManager gameManager;
 
-    public Start(Main main){
-        this.plugin = main;
+    public Game(LavaRun lavaRun){
+        this.plugin = lavaRun;
+        this.gameManager = new GameManager();
     }
 
     @Override
@@ -32,7 +34,7 @@ public class Start implements CommandExecutor {
 
     private void startGame(){
         plugin.setGameRunning(true);
-        for(Player p:new Main().getServer().getOnlinePlayers()){
+        for(Player p:new LavaRun().getServer().getOnlinePlayers()){
             p.teleport(plugin.getCenter());
             p.sendMessage("Game start.");
         }

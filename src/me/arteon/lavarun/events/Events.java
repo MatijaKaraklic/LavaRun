@@ -1,18 +1,17 @@
 package me.arteon.lavarun.events;
 
-import me.arteon.lavarun.Main;
+import me.arteon.lavarun.LavaRun;
 import org.bukkit.GameMode;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerMoveEvent;
 
 public class Events implements Listener {
 
-    Main plugin;
+    LavaRun plugin;
 
-    public Events(Main main){
-        this.plugin = main;
+    public Events(LavaRun lavaRun){
+        this.plugin = lavaRun;
     }
 
 
