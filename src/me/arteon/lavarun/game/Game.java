@@ -14,7 +14,7 @@ public class Game implements CommandExecutor {
 
     public Game(LavaRun lavaRun){
         this.plugin = lavaRun;
-        this.gameManager = new GameManager();
+        this.gameManager = new GameManager(plugin);
     }
 
     @Override
@@ -24,24 +24,19 @@ public class Game implements CommandExecutor {
         Player player = (Player) commandSender;
 
         if(player.isOp()) {
-            startGame();
+            switch (args[0]){
+                case "start":
+                    gameManager.startGame();
+                    break;
+                case "stop":
+                    gameManager.stopGame();
+                    break;
+            }
         }
         else {
             player.sendMessage(ChatColor.RED + "You are not Operator on this server!");
         }
         return false;
-    }
-
-    private void startGame(){
-        plugin.setGameRunning(true);
-        for(Player p:new LavaRun().getServer().getOnlinePlayers()){
-            p.teleport(plugin.getCenter());
-            p.sendMessage("Game start.");
-        }
-    }
-
-    private void gameEnd(){
-        plugin.setGameRunning(false);
     }
 
 }
