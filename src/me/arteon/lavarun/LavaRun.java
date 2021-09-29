@@ -47,6 +47,7 @@ public class LavaRun extends JavaPlugin {
 
     private void firstSetup(){
         running = false;
+        time_sec = 3;
         setcenter = new SetCenter(this);
         setpoint = new SetPoint(this);
         setupinfo = new SetupInfo(this);
@@ -54,6 +55,14 @@ public class LavaRun extends JavaPlugin {
         time = new Time(this);
     }
 
+    public boolean isSetup(){
+        if (center == null || pointA == null || pointB == null){
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
 
 
     //------------------------------------------------

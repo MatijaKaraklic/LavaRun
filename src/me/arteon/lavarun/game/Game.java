@@ -24,13 +24,18 @@ public class Game implements CommandExecutor {
         Player player = (Player) commandSender;
 
         if(player.isOp()) {
-            switch (args[0]){
-                case "start":
-                    gameManager.startGame();
-                    break;
-                case "stop":
-                    gameManager.stopGame();
-                    break;
+            if(plugin.isSetup()){
+                switch (args[0]){
+                    case "start":
+                        gameManager.startGame();
+                        break;
+                    case "stop":
+                        gameManager.stopGame();
+                        break;
+                }
+            }
+            else {
+                player.sendMessage(ChatColor.RED + "Some parameters is missing.");
             }
         }
         else {
@@ -38,5 +43,6 @@ public class Game implements CommandExecutor {
         }
         return false;
     }
+
 
 }

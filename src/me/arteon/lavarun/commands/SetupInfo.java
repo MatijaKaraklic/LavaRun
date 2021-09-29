@@ -36,6 +36,7 @@ public class SetupInfo implements CommandExecutor {
         p.sendMessage(ChatColor.GREEN + "Center: " + simpleLocation(plugin.getCenter()));
         p.sendMessage(ChatColor.GREEN + "Point A: " + simpleLocation(plugin.getPointA()));
         p.sendMessage(ChatColor.GREEN + "Point B: " + simpleLocation(plugin.getPointB()));
+        p.sendMessage(ChatColor.GREEN + "Time: " + plugin.getTimeSec());
         p.sendMessage(ChatColor.GOLD + "--------------------------");
     }
 
