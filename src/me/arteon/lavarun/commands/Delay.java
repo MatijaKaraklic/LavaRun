@@ -7,11 +7,11 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class Time implements CommandExecutor {
+public class Delay implements CommandExecutor {
 
     LavaRun plugin;
 
-    public Time(LavaRun lavaRun){
+    public Delay(LavaRun lavaRun){
         this.plugin = lavaRun;
     }
 

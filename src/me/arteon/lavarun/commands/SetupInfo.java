@@ -33,14 +33,21 @@ public class SetupInfo implements CommandExecutor {
 
     private void setupInfo(Player p){
         p.sendMessage(ChatColor.GOLD + "-----------INFO-----------");
-        p.sendMessage(ChatColor.GREEN + "Center: " + simpleLocation(plugin.getCenter()));
-        p.sendMessage(ChatColor.GREEN + "Point A: " + simpleLocation(plugin.getPointA()));
-        p.sendMessage(ChatColor.GREEN + "Point B: " + simpleLocation(plugin.getPointB()));
-        p.sendMessage(ChatColor.GREEN + "Time: " + plugin.getTimeSec());
+        p.sendMessage(ChatColor.GREEN + "Center: " + info(plugin.getCenter()));
+        p.sendMessage(ChatColor.GREEN + "Point A: " + info(plugin.getPointA()));
+        p.sendMessage(ChatColor.GREEN + "Point B: " + info(plugin.getPointB()));
+        p.sendMessage(ChatColor.GREEN + "Delay: " + plugin.getTimeSec() + " second" + (plugin.getTimeSec()>1?"s":""));
         p.sendMessage(ChatColor.GOLD + "--------------------------");
     }
 
     private String simpleLocation(Location l){
         return "X: " + l.getBlockX() + " Y: " + l.getBlockY() + " Z: " + l.getBlockZ();
+    }
+
+    private String info(Location l){
+        if(l == null){
+            return "Not setup";
+        }
+        else return simpleLocation(l);
     }
 }

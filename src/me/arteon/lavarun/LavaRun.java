@@ -3,10 +3,9 @@ package me.arteon.lavarun;
 import me.arteon.lavarun.commands.SetCenter;
 import me.arteon.lavarun.commands.SetPoint;
 import me.arteon.lavarun.commands.SetupInfo;
-import me.arteon.lavarun.commands.Time;
+import me.arteon.lavarun.commands.Delay;
 import me.arteon.lavarun.game.Game;
 import me.arteon.lavarun.events.Events;
-import me.arteon.lavarun.game.GameManager;
 import org.bukkit.Location;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -20,7 +19,7 @@ public class LavaRun extends JavaPlugin {
     SetPoint setpoint;
     SetupInfo setupinfo;
     Game game;
-    Time time;
+    Delay delay;
 
 
 
@@ -37,7 +36,7 @@ public class LavaRun extends JavaPlugin {
         getCommand("setpoint").setExecutor(setpoint);
         getCommand("setupinfo").setExecutor(setupinfo);
         getCommand("game").setExecutor(game);
-        getCommand("time").setExecutor(time);
+        getCommand("delay").setExecutor(delay);
     }
 
     @Override
@@ -52,7 +51,7 @@ public class LavaRun extends JavaPlugin {
         setpoint = new SetPoint(this);
         setupinfo = new SetupInfo(this);
         game = new Game(this);
-        time = new Time(this);
+        delay = new Delay(this);
     }
 
     public boolean isSetup(){

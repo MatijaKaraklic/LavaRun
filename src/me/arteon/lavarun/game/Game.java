@@ -35,7 +35,7 @@ public class Game implements CommandExecutor {
                 }
             }
             else {
-                player.sendMessage(ChatColor.RED + "Some parameters is missing.");
+                player.sendMessage(ChatColor.RED + "Some parameters is missing. Type /setupinfo to see all parameters.");
             }
         }
         else {
