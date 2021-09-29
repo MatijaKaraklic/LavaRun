@@ -1,5 +1,5 @@
 name: LavaRun
-main: me.arteon.lavarun.Main
+main: me.arteon.lavarun.LavaRun
 version: 1.0
 api-version: 1.17
 author: Arteon
@@ -11,3 +11,7 @@ commands:
     description: Setup point A and B.
   setupinfo:
     description: Show info about setup.
+  game:
+    description: Start or Stop game.
+  time:
+    description: Setup time for game.
