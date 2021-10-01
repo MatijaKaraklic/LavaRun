@@ -32,7 +32,8 @@ public class GameManager {
         p.sendMessage(ChatColor.GREEN + "Center: " + info(plugin.center));
         p.sendMessage(ChatColor.GREEN + "Point A: " + info(plugin.pointA));
         p.sendMessage(ChatColor.GREEN + "Point B: " + info(plugin.pointB));
-        p.sendMessage(ChatColor.GREEN + "Delay: " + plugin.time_sec + " second" + (plugin.time_sec>1?"s":""));
+        p.sendMessage(ChatColor.GREEN + "Time: " + plugin.time + " second" + (plugin.time>1?"s":""));
+        p.sendMessage(ChatColor.GREEN + "Safe time: " + plugin.safe_time + " second" + (plugin.time>1?"s":""));
         p.sendMessage(ChatColor.GOLD + "--------------------------");
     }
 

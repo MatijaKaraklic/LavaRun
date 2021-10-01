@@ -2,6 +2,7 @@ package me.arteon.lavarun.config;
 
 import me.arteon.lavarun.LavaRun;
 import org.bukkit.Location;
+import org.bukkit.Material;
 
 public class Config {
 

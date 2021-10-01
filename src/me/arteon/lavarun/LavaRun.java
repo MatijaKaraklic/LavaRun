@@ -12,7 +12,8 @@ public class LavaRun extends JavaPlugin {
     public Location center;
     public Location pointA;
     public Location pointB;
-    public int time_sec;
+    public int safe_time;
+    public int time;
     public Material lava;
     private Game game;
 
@@ -49,6 +50,9 @@ public class LavaRun extends JavaPlugin {
         center = Config.convertStringToLocation(this.getConfig().getString("Game.center"), this);
         pointA = Config.convertStringToLocation(this.getConfig().getString("Game.pointA"), this);
         pointB = Config.convertStringToLocation(this.getConfig().getString("Game.pointB"), this);
+        time = this.getConfig().getInt("Game.time");
+        safe_time = this.getConfig().getInt("Game.safe_time");
+        lava = Material.getMaterial(this.getConfig().getString("Game.material"));
     }
 
 
