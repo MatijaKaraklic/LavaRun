@@ -9,11 +9,13 @@ import org.bukkit.entity.Player;
 public class GameManager {
 
     LavaRun plugin;
-    private int Y = 0;
+    private int Y;
 
     public GameManager(LavaRun lavaRun){
         this.plugin = lavaRun;
+        this.Y = plugin.center.getBlockY();
     }
+
 
     public void startGame(){
         plugin.setGameRunning(true);
@@ -26,6 +28,8 @@ public class GameManager {
 
     public void stopGame(){
         plugin.setGameRunning(false);
+        clearLava(plugin.pointA, plugin.pointB, plugin.lava);
+        Y = plugin.center.getBlockY();
     }
 
     public void info(Player p){
@@ -40,17 +44,31 @@ public class GameManager {
     }
 
     private void fillTerrain(Location pointA, Location pointB, Material m){
-        for(double i = 0; i < 60; i++){
-            for(double j = 0; j < 60; j++){
-                if(pointB.clone().add(i, Y, j).getBlock().getType().equals(Material.AIR)){
-                    pointB.clone().add(i, Y, j).getBlock().setType(m);
-                    System.out.println(i + "|" + Y + "|" + j);
+        Location temp_l;
+        for(double i = pointB.getBlockX(); i < pointA.getBlockX(); i++){
+            for(double j = pointB.getBlockZ(); j < pointA.getBlockZ(); j++){
+                temp_l = new Location(plugin.getServer().getWorld("world"), i, Y, j);
+                if(temp_l.getBlock().getType().equals(Material.AIR)){
+                    temp_l.getBlock().setType(m);
                 }
             }
         }
-
         Y++;
     }
+    private void clearLava(Location pointA, Location pointB, Material m){
+        Location temp_l;
+        for(double i = pointB.getBlockX(); i < pointA.getBlockX(); i++){
+            for(double j = pointB.getBlockZ(); j < pointA.getBlockZ(); j++){
+                for(double k = Y; k > plugin.center.getBlockY()-1; k--){
+                    temp_l = new Location(plugin.getServer().getWorld("world"), i, k, j);
+                    if(temp_l.getBlock().getType().equals(m)){
+                        temp_l.getBlock().setType(Material.AIR);
+                    }
+                }
+            }
+        }
+    }
+
 
     private String simpleLocation(Location l){
         return "X: " + l.getBlockX() + " Y: " + l.getBlockY() + " Z: " + l.getBlockZ();
