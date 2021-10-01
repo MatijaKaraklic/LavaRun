@@ -1,6 +1,7 @@
 package me.arteon.lavarun.game;
 
 import me.arteon.lavarun.LavaRun;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -8,7 +9,6 @@ import org.bukkit.entity.Player;
 public class GameManager {
 
     LavaRun plugin;
-    private Material lava = Material.RED_STAINED_GLASS;
 
     public GameManager(LavaRun lavaRun){
         this.plugin = lavaRun;
@@ -17,8 +17,8 @@ public class GameManager {
     public void startGame(){
         plugin.setGameRunning(true);
         for(Player p : plugin.getServer().getOnlinePlayers()){
-            p.teleport(plugin.getCenter());
-            fillTerrain(plugin.getPointA(), plugin.getPointB(), p);
+            p.teleport(plugin.center);
+            fillTerrain(plugin.pointA, plugin.pointB, p);
             p.sendMessage("Game start.");
         }
     }
@@ -27,8 +27,28 @@ public class GameManager {
         plugin.setGameRunning(false);
     }
 
+    public void info(Player p){
+        p.sendMessage(ChatColor.GOLD + "-----------INFO-----------");
+        p.sendMessage(ChatColor.GREEN + "Center: " + info(plugin.center));
+        p.sendMessage(ChatColor.GREEN + "Point A: " + info(plugin.pointA));
+        p.sendMessage(ChatColor.GREEN + "Point B: " + info(plugin.pointB));
+        p.sendMessage(ChatColor.GREEN + "Delay: " + plugin.time_sec + " second" + (plugin.time_sec>1?"s":""));
+        p.sendMessage(ChatColor.GOLD + "--------------------------");
+    }
+
     private void fillTerrain(Location pointA, Location pointB, Player p){
         p.sendMessage("Fill");
+    }
+
+    private String simpleLocation(Location l){
+        return "X: " + l.getBlockX() + " Y: " + l.getBlockY() + " Z: " + l.getBlockZ();
+    }
+
+    private String info(Location l){
+        if(l == null){
+            return "Not setup";
+        }
+        else return simpleLocation(l);
     }
 
 }

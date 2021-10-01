@@ -1,6 +1,7 @@
 package me.arteon.lavarun.game;
 
 import me.arteon.lavarun.LavaRun;
+import me.arteon.lavarun.config.Config;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -24,7 +25,7 @@ public class Game implements CommandExecutor {
         Player player = (Player) commandSender;
 
         if(player.isOp()) {
-            if(plugin.isSetup()){
+            if(Config.isSetup(plugin)){
                 switch (args[0]){
                     case "start":
                         gameManager.startGame();
@@ -32,10 +33,13 @@ public class Game implements CommandExecutor {
                     case "stop":
                         gameManager.stopGame();
                         break;
+                    case "info":
+                        gameManager.info(player);
+                        break;
                 }
             }
             else {
-                player.sendMessage(ChatColor.RED + "Some parameters is missing. Type /setupinfo to see all parameters.");
+                player.sendMessage(ChatColor.RED + "Some parameters is missing.");
             }
         }
         else {

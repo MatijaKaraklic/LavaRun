@@ -20,12 +20,6 @@ public class Events implements Listener {
         this.plugin = lavaRun;
     }
 
-
-
-    //------------------------------------------------
-    //PLAYER JOIN
-    //------------------------------------------------
-
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         if (plugin.isGameRunning()) {

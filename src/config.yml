@@ -1,0 +1,5 @@
+Game:
+  center: 0|60|0
+  pointA: 30|60|30
+  pointB: -30|60|30
+  lava: RED_STAINED_GLASS

@@ -5,13 +5,5 @@ api-version: 1.17
 author: Arteon
 description: This is LavaRun plugin.
 commands:
-  setcenter:
-    description: Setup center location.
-  setpoint:
-    description: Setup point A and B.
-  setupinfo:
-    description: Show info about setup.
   game:
     description: Start or Stop game.
-  delay:
-    description: Setup time for game.
