@@ -52,7 +52,7 @@ public class LavaRun extends JavaPlugin {
         pointB = Config.convertStringToLocation(this.getConfig().getString("Game.pointB"), this);
         time = this.getConfig().getInt("Game.time");
         safe_time = this.getConfig().getInt("Game.safe_time");
-        lava = Material.getMaterial(this.getConfig().getString("Game.material"));
+        lava = Material.getMaterial(this.getConfig().getString("Game.lava"));
     }
 
 
