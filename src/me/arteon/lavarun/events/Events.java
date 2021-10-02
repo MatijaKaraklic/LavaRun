@@ -2,6 +2,7 @@ package me.arteon.lavarun.events;
 
 import com.sun.media.jfxmedia.events.PlayerStateEvent;
 import me.arteon.lavarun.LavaRun;
+import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -22,11 +23,7 @@ public class Events implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
-        if (plugin.isGameRunning()) {
-            event.getPlayer().setGameMode(GameMode.SPECTATOR);
-        } else {
-            event.getPlayer().setGameMode(GameMode.ADVENTURE);
-        }
+        event.getPlayer().setGameMode(GameMode.SPECTATOR);
     }
 
     @EventHandler
@@ -42,6 +39,12 @@ public class Events implements Listener {
         l = l.add(0, +2, 0);
         if(l.getBlock().getType().equals(Material.RED_STAINED_GLASS)){
             event.getPlayer().setGameMode(GameMode.SPECTATOR);
+        }
+    }
+
+    public void playerDieMessage(Player player){
+        for(Player p : plugin.getServer().getOnlinePlayers()){
+            p.sendMessage();
         }
     }
 

@@ -5,3 +5,12 @@ Game:
   lava: RED_STAINED_GLASS
   safe_time: 10
   time: 5
+Messages:
+  gamestart: Game LavaRun has started.
+  gamestop: Game LavaRun has stopped.
+  player_die:
+    player: Player
+    msg: has died.
+  player_win:
+    player: Player
+    msg: has won.

@@ -3,19 +3,26 @@ package me.arteon.lavarun;
 import me.arteon.lavarun.config.Config;
 import me.arteon.lavarun.game.Game;
 import me.arteon.lavarun.events.Events;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class LavaRun extends JavaPlugin {
     private boolean running;
+
     public Location center;
     public Location pointA;
     public Location pointB;
     public int safe_time;
     public int time;
     public Material lava;
+
     private Game game;
+
+    public String gamestart;
+    public String gamestop;
+
 
 
 
@@ -28,7 +35,7 @@ public class LavaRun extends JavaPlugin {
         configSetup();
         firstSetup();
         classSetup();
-        getServer().getConsoleSender().sendMessage("Lava Run Enabled.");
+        getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "/nLava Run Enabled./n");
         getServer().getPluginManager().registerEvents(new Events(this), this);
         getCommand("game").setExecutor(game);
     }
@@ -53,6 +60,10 @@ public class LavaRun extends JavaPlugin {
         time = this.getConfig().getInt("Game.time");
         safe_time = this.getConfig().getInt("Game.safe_time");
         lava = Material.getMaterial(this.getConfig().getString("Game.lava"));
+
+        gamestart = this.getConfig().getString("Messages.gamestart");
+        gamestop = this.getConfig().getString("Messages.gamestop");
+
     }
 
 

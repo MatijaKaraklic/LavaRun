@@ -1,6 +1,7 @@
 package me.arteon.lavarun.game;
 
 import me.arteon.lavarun.LavaRun;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -19,14 +20,31 @@ public class GameManager {
 
     public void startGame(){
         plugin.setGameRunning(true);
+
         for(Player p : plugin.getServer().getOnlinePlayers()){
             p.teleport(plugin.center);
-            fillTerrain(plugin.pointA, plugin.pointB, plugin.lava);
-            p.sendMessage("Game start.");
+            p.sendMessage(ChatColor.AQUA + plugin.gamestart);
+            p.getInventory().clear();
         }
+
+        plugin.getServer().getScheduler().runTaskTimer(plugin, new Runnable() {
+            @Override
+            public void run() {
+                if(plugin.isGameRunning()){
+                    fillTerrain(plugin.pointA, plugin.pointB, plugin.lava);
+                }
+                else{
+                    plugin.getServer().getScheduler().cancelTasks(plugin);
+                }
+            }
+        }, plugin.safe_time * 20L, plugin.time * 20L);
     }
 
     public void stopGame(){
+        for(Player p : plugin.getServer().getOnlinePlayers()){
+            p.teleport(plugin.center);
+            p.sendMessage(ChatColor.DARK_AQUA + plugin.gamestop);
+        }
         plugin.setGameRunning(false);
         clearLava(plugin.pointA, plugin.pointB, plugin.lava);
         Y = plugin.center.getBlockY();
