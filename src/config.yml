@@ -5,6 +5,7 @@ Game:
   lava: RED_STAINED_GLASS
   safe_time: 10
   time: 5
+  world_name: world
 Messages:
   gamestart: Game LavaRun has started.
   gamestop: Game LavaRun has stopped.

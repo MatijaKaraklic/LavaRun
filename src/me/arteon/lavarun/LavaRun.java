@@ -6,7 +6,10 @@ import me.arteon.lavarun.events.Events;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.util.ArrayList;
 
 public class LavaRun extends JavaPlugin {
     private boolean running;
@@ -14,16 +17,19 @@ public class LavaRun extends JavaPlugin {
     public Location center;
     public Location pointA;
     public Location pointB;
+    public Material lava;
     public int safe_time;
     public int time;
-    public Material lava;
+    public String world_name;
 
     private Game game;
 
     public String gamestart;
     public String gamestop;
+    public String[] player_die = {"null", "null"};
+    public String[] player_win = {"null", "null"};
 
-
+    public ArrayList<Player> alive_players = new ArrayList<>();
 
 
     //------------------------------------------------
@@ -35,7 +41,7 @@ public class LavaRun extends JavaPlugin {
         configSetup();
         firstSetup();
         classSetup();
-        getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "/nLava Run Enabled./n");
+        getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "\n\nLava Run Enabled.\n");
         getServer().getPluginManager().registerEvents(new Events(this), this);
         getCommand("game").setExecutor(game);
     }
@@ -57,12 +63,19 @@ public class LavaRun extends JavaPlugin {
         center = Config.convertStringToLocation(this.getConfig().getString("Game.center"), this);
         pointA = Config.convertStringToLocation(this.getConfig().getString("Game.pointA"), this);
         pointB = Config.convertStringToLocation(this.getConfig().getString("Game.pointB"), this);
+        lava = Material.getMaterial(this.getConfig().getString("Game.lava"));
         time = this.getConfig().getInt("Game.time");
         safe_time = this.getConfig().getInt("Game.safe_time");
-        lava = Material.getMaterial(this.getConfig().getString("Game.lava"));
+        world_name = this.getConfig().getString("Game.world_name");
+
 
         gamestart = this.getConfig().getString("Messages.gamestart");
         gamestop = this.getConfig().getString("Messages.gamestop");
+
+        player_die[0] = this.getConfig().getString("Messages.player_die.player");
+        player_die[1] = this.getConfig().getString("Messages.player_die.msg");
+        player_win[0] = this.getConfig().getString("Messages.player_win.player");
+        player_win[1] = this.getConfig().getString("Messages.player_win.msg");
 
     }
 

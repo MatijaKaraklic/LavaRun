@@ -1,13 +1,14 @@
 package me.arteon.lavarun.game;
 
 import me.arteon.lavarun.LavaRun;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 
+import java.util.Random;
+
 public class GameManager {
+
+    Random r = new Random();
 
     LavaRun plugin;
     private int Y;
@@ -17,14 +18,16 @@ public class GameManager {
         this.Y = plugin.center.getBlockY();
     }
 
-
     public void startGame(){
         plugin.setGameRunning(true);
-
+        plugin.getServer().getWorld("world").playSound(plugin.center, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 0.7f+r.nextFloat()*0.6f);
         for(Player p : plugin.getServer().getOnlinePlayers()){
+            p.setGameMode(GameMode.ADVENTURE);
             p.teleport(plugin.center);
-            p.sendMessage(ChatColor.AQUA + plugin.gamestart);
             p.getInventory().clear();
+            p.setHealth(20);
+            p.setFoodLevel(20);
+            p.sendMessage(ChatColor.AQUA + plugin.gamestart);
         }
 
         plugin.getServer().getScheduler().runTaskTimer(plugin, new Runnable() {
@@ -32,6 +35,7 @@ public class GameManager {
             public void run() {
                 if(plugin.isGameRunning()){
                     fillTerrain(plugin.pointA, plugin.pointB, plugin.lava);
+                    gameUpdate();
                 }
                 else{
                     plugin.getServer().getScheduler().cancelTasks(plugin);
@@ -41,13 +45,18 @@ public class GameManager {
     }
 
     public void stopGame(){
-        for(Player p : plugin.getServer().getOnlinePlayers()){
-            p.teleport(plugin.center);
-            p.sendMessage(ChatColor.DARK_AQUA + plugin.gamestop);
-        }
         plugin.setGameRunning(false);
         clearLava(plugin.pointA, plugin.pointB, plugin.lava);
         Y = plugin.center.getBlockY();
+        plugin.getServer().getWorld("world").playSound(plugin.center, Sound.ENTITY_BLAZE_DEATH, 1, 0.7f+r.nextFloat()*0.6f);
+        for(Player p : plugin.getServer().getOnlinePlayers()){
+            p.setGameMode(GameMode.ADVENTURE);
+            p.teleport(plugin.center);
+            p.getInventory().clear();
+            p.setHealth(20);
+            p.setFoodLevel(20);
+            p.sendMessage(ChatColor.DARK_AQUA + plugin.gamestop);
+        }
     }
 
     public void info(Player p){
@@ -87,6 +96,16 @@ public class GameManager {
         }
     }
 
+    public void gameUpdate(){
+        plugin.alive_players.clear();
+        for(Player p : plugin.getServer().getOnlinePlayers()){
+            if(p.getGameMode().equals(GameMode.ADVENTURE)){
+                plugin.alive_players.add(p);
+            }
+            p.setHealth(20);
+            p.setFoodLevel(20);
+        }
+    }
 
     private String simpleLocation(Location l){
         return "X: " + l.getBlockX() + " Y: " + l.getBlockY() + " Z: " + l.getBlockZ();
