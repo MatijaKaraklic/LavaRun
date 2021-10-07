@@ -54,7 +54,7 @@ public class Events implements Listener {
     public void playerDieMessage(Player player){
         if(player.getGameMode().equals(GameMode.ADVENTURE)){
             for(Player p : plugin.getServer().getOnlinePlayers()){
-                p.sendMessage(ChatColor.RED + plugin.player_die[0] + " " + player.getName() + " " + plugin.player_die[1]);
+                p.sendMessage(ChatColor.RED + plugin.player_die[0] + " [" + player.getName() + "] " + plugin.player_die[1]);
             }
         }
     }

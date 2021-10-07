@@ -20,7 +20,6 @@ public class GameManager {
 
     public void startGame(){
         plugin.setGameRunning(true);
-        plugin.getServer().getWorld("world").playSound(plugin.center, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 0.7f+r.nextFloat()*0.6f);
         for(Player p : plugin.getServer().getOnlinePlayers()){
             p.setGameMode(GameMode.ADVENTURE);
             p.teleport(plugin.center);
@@ -29,6 +28,7 @@ public class GameManager {
             p.setFoodLevel(20);
             p.sendMessage(ChatColor.AQUA + plugin.gamestart);
         }
+        plugin.getServer().getWorld("world").playSound(plugin.center, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 0.7f+r.nextFloat()*0.6f);
 
         plugin.getServer().getScheduler().runTaskTimer(plugin, new Runnable() {
             @Override
@@ -48,7 +48,6 @@ public class GameManager {
         plugin.setGameRunning(false);
         clearLava(plugin.pointA, plugin.pointB, plugin.lava);
         Y = plugin.center.getBlockY();
-        plugin.getServer().getWorld("world").playSound(plugin.center, Sound.ENTITY_BLAZE_DEATH, 1, 0.7f+r.nextFloat()*0.6f);
         for(Player p : plugin.getServer().getOnlinePlayers()){
             p.setGameMode(GameMode.ADVENTURE);
             p.teleport(plugin.center);
@@ -57,6 +56,7 @@ public class GameManager {
             p.setFoodLevel(20);
             p.sendMessage(ChatColor.DARK_AQUA + plugin.gamestop);
         }
+        plugin.getServer().getWorld("world").playSound(plugin.center, Sound.ENTITY_BLAZE_DEATH, 1, 0.7f+r.nextFloat()*0.6f);
     }
 
     public void info(Player p){
@@ -68,6 +68,27 @@ public class GameManager {
         p.sendMessage(ChatColor.GREEN + "Safe time: " + plugin.safe_time + " second" + (plugin.time>1?"s":""));
         p.sendMessage(ChatColor.GREEN + "Lava: " + plugin.lava);
         p.sendMessage(ChatColor.GOLD + "--------------------------");
+    }
+
+    private void gameOver(){
+        plugin.setGameRunning(false);
+        clearLava(plugin.pointA, plugin.pointB, plugin.lava);
+        Y = plugin.center.getBlockY();
+        plugin.getServer().getScheduler().runTaskTimer(plugin, new Runnable() {
+            int timer = 5;
+            @Override
+            public void run() {
+                if(!plugin.isGameRunning() && timer > 0){
+                    plugin.getServer().broadcastMessage(ChatColor.GREEN + "New game is starting in: " + timer);
+                    timer--;
+                }
+                else{
+                    plugin.setGameRunning(true);
+                    plugin.getServer().getScheduler().cancelTasks(plugin);
+                }
+            }
+        }, 0,5 * 20L);
+
     }
 
     private void fillTerrain(Location pointA, Location pointB, Material m){
@@ -104,6 +125,10 @@ public class GameManager {
             }
             p.setHealth(20);
             p.setFoodLevel(20);
+        }
+        if(plugin.alive_players.size() == 1){
+            gameOver();
+            plugin.getServer().broadcastMessage(ChatColor.GOLD + plugin.player_win[0] + " [" + plugin.alive_players.get(0).getName() + "] " + plugin.player_win[1]);
         }
     }
 
